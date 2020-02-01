@@ -1,5 +1,5 @@
 # Lorti-UI
-This is modified [Lorti UI](https://www.wowinterface.com/downloads/info22483-LortiUI.html) addon (World of Warcraft) that is working with the most recent patch (eventually).
+This is modified [Lorti UI](https://www.wowinterface.com/downloads/info22483-LortiUI.html) addon (World of Warcraft) that is working with the most recent patch.
 
 This addon is belongs to [lorti](https://www.wowinterface.com/downloads/info22483-LortiUI.html) who is the original author.
 Improvements, and bug reports should be addressed in the [issue tracker](https://github.com/Thainii/Lorti-UI/issues)
