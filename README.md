@@ -1,8 +1,7 @@
 # Lorti-UI
 This is modified [Lorti UI](https://www.wowinterface.com/downloads/info22483-LortiUI.html) addon (World of Warcraft) that is working with the most recent patch (eventually).
 
-This addon is belongs to [lorti](https://www.wowinterface.com/downloads/info22483-LortiUI.html) who is the original author. After the addon survived for more than 2 years, after the last official updated at Oct. 29. 2013, it finally stopped working with the newest battle.net [changes in Blizzard's 6.2.4 API](http://us.battle.net/wow/en/forum/topic/20742784697). I modified it to make it work, at least for me.
-
+This addon is belongs to [lorti](https://www.wowinterface.com/downloads/info22483-LortiUI.html) who is the original author.
 Improvements, and bug reports should be addressed in the [issue tracker](https://github.com/Thainii/Lorti-UI/issues)
 
 
