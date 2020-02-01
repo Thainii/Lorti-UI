@@ -1,7 +1,7 @@
 ## Interface: 80300
 ## Author: lorti
 ## Edited by Thainii
-## Version: 4.0.0
+## Version: 1.0
 ## Title: Lorti-UI
 ## Notes: Darkens the default UI
 
