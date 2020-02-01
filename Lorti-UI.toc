@@ -2,7 +2,7 @@
 ## Author: lorti
 ## Edited by Thainii
 ## Version: 4.0.0
-## Title: Lorti UI
+## Title: Lorti-UI
 ## Notes: Darkens the default UI
 
 config.lua

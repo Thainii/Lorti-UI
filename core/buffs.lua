@@ -1,4 +1,3 @@
-
   --get the addon namespace
   local addon, ns = ...
   --get the config values
