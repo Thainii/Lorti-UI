@@ -15,6 +15,7 @@ Description
 This Addon will turn all your default UI black.
 
 F.A.Q.
+-----------
 1. How can I open calendar and tracking menu?
     To open calendar you use right click on minimap and to open tracking menu you use middle click on minimap.
 
