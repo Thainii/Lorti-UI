@@ -138,7 +138,11 @@
     --icon
     local icon = _G[name.."Icon"]
     if consolidated then
-     icon:SetTexture(select(3,GetSpellInfo(109077))) --cogwheel
+	if select(1,UnitFactionGroup("player")) == "Alliance" then	
+     		icon:SetTexture(select(3,GetSpellInfo(61573)))
+	elseif select(1,UnitFactionGroup("player")) == "Horde" then
+		icon:SetTexture(select(3,GetSpellInfo(61574)))
+	end
     end
     icon:SetTexCoord(0.1,0.9,0.1,0.9)
     icon:ClearAllPoints()
@@ -176,7 +180,7 @@
       local back = CreateFrame("Frame", nil, b)
       back:SetPoint("TOPLEFT", b, "TOPLEFT", -cfg.background.padding, cfg.background.padding)
       back:SetPoint("BOTTOMRIGHT", b, "BOTTOMRIGHT", cfg.background.padding, -cfg.background.padding)
-      back:SetFrameLevel(b:GetFrameLevel()-1)
+      back:SetFrameLevel(b:GetFrameLevel() - 1)
       back:SetBackdrop(backdrop)
       back:SetBackdropBorderColor(cfg.background.color.r,cfg.background.color.g,cfg.background.color.b,cfg.background.color.a)
       b.bg = back
@@ -216,25 +220,26 @@
     local offset      = numEnchants
     local realIndex, previousButton, aboveButton
     --position the tempenchant button depending on the consolidated button status
-    if ShouldShowConsolidatedBuffFrame() then
-      TempEnchant1:ClearAllPoints()
-      TempEnchant1:SetPoint("TOPRIGHT", ConsolidatedBuffs, "TOPLEFT", -cfg.buffFrame.colSpacing, 0)
-      offset = offset + 1
-    else
+   -- if ShouldShowConsolidatedBuffFrame() then
+     -- TempEnchant1:ClearAllPoints()
+     -- TempEnchant1:SetPoint("TOPRIGHT", ConsolidatedBuffs, "TOPLEFT", -cfg.buffFrame.colSpacing, 0)
+      --offset = offset + 1
+   -- else
       TempEnchant1:ClearAllPoints()
       TempEnchant1:SetPoint("TOPRIGHT", rBFS_BuffDragFrame, "TOPRIGHT", 0, 0)
-    end
+    --end
     
     --calculate the previous button in case tempenchant or consolidated buff are loaded
     if BuffFrame.numEnchants > 0 then
       previousButton = _G["TempEnchant"..numEnchants]
-    elseif ShouldShowConsolidatedBuffFrame() then
-      previousButton = ConsolidatedBuffs
     end
+   -- elseif ShouldShowConsolidatedBuffFrame() then
+     -- previousButton = ConsolidatedBuffs
+   -- end
     --calculate the above button in case tempenchant or consolidated buff are loaded
-    if ShouldShowConsolidatedBuffFrame() then
-      aboveButton = ConsolidatedBuffs
-    elseif numEnchants > 0 then
+   -- if ShouldShowConsolidatedBuffFrame() then
+    --  aboveButton = ConsolidatedBuffs
+    if numEnchants > 0 then
       aboveButton = TempEnchant1
     end
     --loop on all active buff buttons
@@ -308,12 +313,12 @@
   TempEnchant3:SetPoint("TOPRIGHT", TempEnchant2, "TOPLEFT", -cfg.buffFrame.colSpacing, 0)
   
   --consolidated buff stuff
-  ConsolidatedBuffs:SetScript("OnLoad", nil) --do not fuck up the icon anymore
-  applySkin(ConsolidatedBuffs)
+  --ConsolidatedBuffs:SetScript("OnLoad", nil) --do not fuck up the icon anymore
+  --applySkin(ConsolidatedBuffs)
   --position the consolidate buff button
-  ConsolidatedBuffs:ClearAllPoints()
-  ConsolidatedBuffs:SetPoint("TOPRIGHT", rBFS_BuffDragFrame, "TOPRIGHT", 0, 0)
-  ConsolidatedBuffsTooltip:SetScale(cfg.consolidatedTooltipScale)
+  --ConsolidatedBuffs:ClearAllPoints()
+  --ConsolidatedBuffs:SetPoint("TOPRIGHT", rBFS_BuffDragFrame, "TOPRIGHT", 0, 0)
+  --ConsolidatedBuffsTooltip:SetScale(cfg.consolidatedTooltipScale)
   
   --hook Blizzard functions
   hooksecurefunc("BuffFrame_UpdateAllBuffAnchors", updateAllBuffAnchors)

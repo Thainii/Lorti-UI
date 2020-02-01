@@ -40,13 +40,17 @@
   -- FUNCTIONS
   ---------------------------------------
 
+	if IsAddOnLoaded("Masque") and (dominos or bartender4) then
+		return
+	end
+
   local function applyBackground(bu)
     if not bu or (bu and bu.bg) then return end
     --shadows+background
     if bu:GetFrameLevel() < 1 then bu:SetFrameLevel(1) end
     if cfg.background.showbg or cfg.background.showshadow then
       bu.bg = CreateFrame("Frame", nil, bu)
-      bu.bg:SetAllPoints(bu)
+     -- bu.bg:SetAllPoints(bu)
       bu.bg:SetPoint("TOPLEFT", bu, "TOPLEFT", -4, 4)
       bu.bg:SetPoint("BOTTOMRIGHT", bu, "BOTTOMRIGHT", 4, -4)
       bu.bg:SetFrameLevel(bu:GetFrameLevel()-1)
@@ -57,7 +61,7 @@
       if cfg.background.showbg and not cfg.background.useflatbackground then
         local t = bu.bg:CreateTexture(nil,"BACKGROUND",-8)
         t:SetTexture(cfg.textures.buttonback)
-        t:SetAllPoints(bu)
+        --t:SetAllPoints(bu)
         t:SetVertexColor(cfg.background.backgroundcolor.r,cfg.background.backgroundcolor.g,cfg.background.backgroundcolor.b,cfg.background.backgroundcolor.a)
       end
       bu.bg:SetBackdrop(backdrop)
@@ -73,30 +77,43 @@
   --style extraactionbutton
   local function styleExtraActionButton(bu)
     if not bu or (bu and bu.rabs_styled) then return end
-    local name = bu:GetName()
+    local name = bu:GetName() or bu:GetParent():GetName()
+	local style = bu.style or bu.Style
+	local icon = bu.icon or bu.Icon
+	local cooldown = bu.cooldown or bu.Cooldown
     local ho = _G[name.."HotKey"]
-    --remove the style background theme
-    bu.style:SetTexture(nil)
-    hooksecurefunc(bu.style, "SetTexture", function(self, texture)
+    -- remove the style background theme
+	style:SetTexture(nil)
+    hooksecurefunc(style, "SetTexture", function(self, texture)
       if texture then
         --print("reseting texture: "..texture)
         self:SetTexture(nil)
       end
     end)
     --icon
-    bu.icon:SetTexCoord(0.1,0.9,0.1,0.9)
-    bu.icon:SetAllPoints(bu)
+    icon:SetTexCoord(0.1,0.9,0.1,0.9)
+    --icon:SetAllPoints(bu)
+	icon:SetPoint("TOPLEFT", bu, "TOPLEFT", 2, -2)
+    icon:SetPoint("BOTTOMRIGHT", bu, "BOTTOMRIGHT", -2, 2)
     --cooldown
-    bu.cooldown:SetAllPoints(bu.icon)
+    cooldown:SetAllPoints(icon)
     --hotkey
-    ho:Hide()
+	if ho then
+		ho:Hide()
+	end
     --add button normaltexture
     bu:SetNormalTexture(cfg.textures.normal)
     local nt = bu:GetNormalTexture()
     nt:SetVertexColor(cfg.color.normal.r,cfg.color.normal.g,cfg.color.normal.b,1)
     nt:SetAllPoints(bu)
     --apply background
-    if not bu.bg then applyBackground(bu) end
+    --if not bu.bg then applyBackground(bu) end
+	bu.Back = CreateFrame("Frame", nil, bu)
+		bu.Back:SetPoint("TOPLEFT", bu, "TOPLEFT", -3, 3)
+		bu.Back:SetPoint("BOTTOMRIGHT", bu, "BOTTOMRIGHT", 3, -3)
+		bu.Back:SetFrameLevel(bu:GetFrameLevel() - 1)
+		bu.Back:SetBackdrop(backdrop)
+		bu.Back:SetBackdropBorderColor(0, 0, 0, 0.9)
     bu.rabs_styled = true
   end
 
@@ -148,9 +165,9 @@
     end
     --applying the textures
     fl:SetTexture(cfg.textures.flash)
-    bu:SetHighlightTexture(cfg.textures.hover)
+    --bu:SetHighlightTexture(cfg.textures.hover)
     bu:SetPushedTexture(cfg.textures.pushed)
-    bu:SetCheckedTexture(cfg.textures.checked)
+    --bu:SetCheckedTexture(cfg.textures.checked)
     bu:SetNormalTexture(cfg.textures.normal)
     if not nt then
       --fix the non existent texture problem (no clue what is causing this)
@@ -165,7 +182,7 @@
     cd:SetPoint("BOTTOMRIGHT", bu, "BOTTOMRIGHT", -cfg.cooldown.spacing, cfg.cooldown.spacing)
     --apply the normaltexture
     if action and  IsEquippedAction(action) then
-      bu:SetNormalTexture(cfg.textures.equipped)
+      --bu:SetNormalTexture(cfg.textures.equipped)
       nt:SetVertexColor(cfg.color.equipped.r,cfg.color.equipped.g,cfg.color.equipped.b,1)
     else
       bu:SetNormalTexture(cfg.textures.normal)
@@ -208,9 +225,22 @@
       bu.SetNormalTexture = function() return end
     end
   end
-
+  -- style leave button
   local function styleLeaveButton(bu)
     if not bu or (bu and bu.rabs_styled) then return end
+	--local region = select(1, bu:GetRegions())
+	local name = bu:GetName()
+	local nt = bu:GetNormalTexture()
+	local bo = bu:CreateTexture(name.."Border", "BACKGROUND", nil, -7)
+	nt:SetTexCoord(0.2,0.8,0.2,0.8)
+	nt:SetPoint("TOPLEFT", bu, "TOPLEFT", 2, -2)
+    nt:SetPoint("BOTTOMRIGHT", bu, "BOTTOMRIGHT", -2, 2)
+	bo:SetTexture(cfg.textures.normal)
+	bo:SetTexCoord(0, 1, 0, 1)
+	bo:SetDrawLayer("BACKGROUND",- 7)
+	bo:SetVertexColor(0.4, 0.35, 0.35)
+	bo:ClearAllPoints()
+	bo:SetAllPoints(bu)
     --shadows+background
     if not bu.bg then applyBackground(bu) end
     bu.rabs_styled = true
@@ -228,9 +258,9 @@
     nt:SetVertexColor(cfg.color.normal.r,cfg.color.normal.g,cfg.color.normal.b,1)
     --setting the textures
     fl:SetTexture(cfg.textures.flash)
-    bu:SetHighlightTexture(cfg.textures.hover)
+    --bu:SetHighlightTexture(cfg.textures.hover)
     bu:SetPushedTexture(cfg.textures.pushed)
-    bu:SetCheckedTexture(cfg.textures.checked)
+    --bu:SetCheckedTexture(cfg.textures.checked)
     bu:SetNormalTexture(cfg.textures.normal)
     hooksecurefunc(bu, "SetNormalTexture", function(self, texture)
       --make sure the normaltexture stays the way we want it
@@ -240,8 +270,8 @@
     end)
     --cut the default border of the icons and make them shiny
     ic:SetTexCoord(0.1,0.9,0.1,0.9)
-    ic:SetPoint("TOPLEFT", bu, "TOPLEFT", 2, -2)
-    ic:SetPoint("BOTTOMRIGHT", bu, "BOTTOMRIGHT", -2, 2)
+	ic:SetPoint("TOPLEFT", bu, "TOPLEFT", 2, -2)
+	ic:SetPoint("BOTTOMRIGHT", bu, "BOTTOMRIGHT", -2, 2)
     --shadows+background
     if not bu.bg then applyBackground(bu) end
     bu.rabs_styled = true
@@ -259,9 +289,9 @@
     nt:SetVertexColor(cfg.color.normal.r,cfg.color.normal.g,cfg.color.normal.b,1)
     --setting the textures
     fl:SetTexture(cfg.textures.flash)
-    bu:SetHighlightTexture(cfg.textures.hover)
+    --bu:SetHighlightTexture(cfg.textures.hover)
     bu:SetPushedTexture(cfg.textures.pushed)
-    bu:SetCheckedTexture(cfg.textures.checked)
+    --bu:SetCheckedTexture(cfg.textures.checked)
     bu:SetNormalTexture(cfg.textures.normal)
     --cut the default border of the icons and make them shiny
     ic:SetTexCoord(0.1,0.9,0.1,0.9)
@@ -284,9 +314,9 @@
     nt:SetVertexColor(cfg.color.normal.r,cfg.color.normal.g,cfg.color.normal.b,1)
     --setting the textures
     fl:SetTexture(cfg.textures.flash)
-    bu:SetHighlightTexture(cfg.textures.hover)
+    --bu:SetHighlightTexture(cfg.textures.hover)
     bu:SetPushedTexture(cfg.textures.pushed)
-    bu:SetCheckedTexture(cfg.textures.checked)
+    --bu:SetCheckedTexture(cfg.textures.checked)
     bu:SetNormalTexture(cfg.textures.normal)
     --cut the default border of the icons and make them shiny
     ic:SetTexCoord(0.1,0.9,0.1,0.9)
@@ -296,6 +326,41 @@
     if not bu.bg then applyBackground(bu) end
     bu.rabs_styled = true
   end
+
+-- style bags
+local function styleBag(bu)
+	if not bu or (bu and bu.rabs_styled) then return end
+	local name = bu:GetName()
+	local ic  = _G[name.."IconTexture"]
+	local nt  = _G[name.."NormalTexture"]
+	nt:SetTexCoord(0,1,0,1)
+	nt:SetDrawLayer("BACKGROUND", -7)
+	nt:SetVertexColor(0.4, 0.35, 0.35)
+	nt:SetAllPoints(bu)
+	local bo = bu.IconBorder
+	bo:Hide()
+	bo.Show = function() end
+	ic:SetTexCoord(0.1,0.9,0.1,0.9)
+    	ic:SetPoint("TOPLEFT", bu, "TOPLEFT", 2, -2)
+    	ic:SetPoint("BOTTOMRIGHT", bu, "BOTTOMRIGHT", -2, 2)
+  	bu:SetNormalTexture(cfg.textures.normal)
+	--bu:SetHighlightTexture(cfg.textures.hover)
+    	bu:SetPushedTexture(cfg.textures.pushed)
+    	--bu:SetCheckedTexture(cfg.textures.checked)
+ 	
+      --make sure the normaltexture stays the way we want it
+	hooksecurefunc(bu, "SetNormalTexture", function(self, texture)
+      		if texture and texture ~= cfg.textures.normal then
+        		self:SetNormalTexture(cfg.textures.normal)
+      		end
+   	 end)
+	bu.Back = CreateFrame("Frame", nil, bu)
+		bu.Back:SetPoint("TOPLEFT", bu, "TOPLEFT", -4, 4)
+		bu.Back:SetPoint("BOTTOMRIGHT", bu, "BOTTOMRIGHT", 4, -4)
+		bu.Back:SetFrameLevel(bu:GetFrameLevel() - 1)
+		bu.Back:SetBackdrop(backdrop)
+		bu.Back:SetBackdropBorderColor(0, 0, 0, 0.9)
+end
 
   --update hotkey func
   local function updateHotkey(self, actionButtonType)
@@ -318,11 +383,17 @@
       styleActionButton(_G["MultiBarRightButton"..i])
       styleActionButton(_G["MultiBarLeftButton"..i])
     end
+
+	  --style bags
+    for i = 0, 3 do
+		styleBag(_G["CharacterBag"..i.."Slot"])
+    end
+	styleBag(MainMenuBarBackpackButton)
     for i = 1, 6 do
       styleActionButton(_G["OverrideActionBarButton"..i])
     end
     --style leave button
-    styleLeaveButton(OverrideActionBarLeaveFrameLeaveButton)
+	styleLeaveButton(MainMenuBarVehicleLeaveButton)
     styleLeaveButton(rABS_LeaveVehicleButton)
     --petbar buttons
     for i=1, NUM_PET_ACTION_SLOTS do
@@ -338,6 +409,7 @@
     end
     --extraactionbutton1
     styleExtraActionButton(ExtraActionButton1)
+	styleExtraActionButton(ZoneAbilityFrame.SpellButton)
     --spell flyout
     SpellFlyoutBackgroundEnd:SetTexture(nil)
     SpellFlyoutHorizontalBackground:SetTexture(nil)
@@ -362,6 +434,7 @@
       --print("Bartender4 found")
       for i = 1, 120 do
         styleActionButton(_G["BT4Button"..i])
+		stylePetButton(_G["BT4PetButton"..i])
       end
     end
 

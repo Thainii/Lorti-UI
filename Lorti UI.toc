@@ -1,11 +1,11 @@
-## Interface: 50400
+## Interface: 70200
 ## Author: lorti
-## Version: 1.0.1
+## Version: 3.2.0
 ## Title: Lorti UI
-## Notes: Darkens default UI
+## Notes: Darkens the default UI
 
 config.lua
 core\frames.lua
 core\buffs.lua
 core\actionbars.lua
-
+core\auras.lua
