@@ -160,13 +160,13 @@
 			self.manabar.RightText:Hide();
 			forceNormalTexture = true;
 		elseif ( classification == "worldboss" or classification == "elite" ) then
-			self.borderTexture:SetTexture("Interface\\AddOns\\Lorti UI\\textures\\target\\elite")
+			self.borderTexture:SetTexture("Interface\\AddOns\\Lorti-UI\\textures\\target\\elite")
 			self.borderTexture:SetVertexColor(1, 1, 1)
 		elseif ( classification == "rareelite" ) then
-			self.borderTexture:SetTexture("Interface\\AddOns\\Lorti UI\\textures\\target\\rare-elite")
+			self.borderTexture:SetTexture("Interface\\AddOns\\Lorti-UI\\textures\\target\\rare-elite")
 			self.borderTexture:SetVertexColor(1, 1, 1)
 		elseif ( classification == "rare" ) then
-			self.borderTexture:SetTexture("Interface\\AddOns\\Lorti UI\\textures\\target\\rare")
+			self.borderTexture:SetTexture("Interface\\AddOns\\Lorti-UI\\textures\\target\\rare")
 			self.borderTexture:SetVertexColor(1, 1, 1)
 		else
 			self.borderTexture:SetTexture("Interface\\TargetingFrame\\UI-TargetingFrame")
@@ -282,7 +282,7 @@
 					region:SetVertexColor(.05, .05, .05)
 				end
 			end
-			CompactRaidFrameManagerToggleButton:SetNormalTexture("Interface\\AddOns\\Lorti UI\\textures\\raid\\RaidPanel-Toggle")
+			CompactRaidFrameManagerToggleButton:SetNormalTexture("Interface\\AddOns\\Lorti-UI\\textures\\raid\\RaidPanel-Toggle")
 			
 			hooksecurefunc("GameTooltip_ShowCompareItem", function(self, anchorFrame)
 				if self then
