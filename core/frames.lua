@@ -224,7 +224,7 @@
 		end)
 		if event == "GROUP_ROSTER_UPDATE" then return end
 		if not (IsAddOnLoaded("Shadowed Unit Frames") or IsAddOnLoaded("PitBull Unit Frames 4.0") or IsAddOnLoaded("X-Perl UnitFrames")) then
-                	for i,v in pairs({
+			for i,v in pairs({
 				PlayerFrameTexture,
 				PlayerFrameAlternateManaBarBorder,
 				PlayerFrameAlternateManaBarLeftBorder,
@@ -265,7 +265,7 @@
 				FocusFrameSpellBar.Border,
 				TargetFrameSpellBar.Border,
 			}) do
-                 		v:SetVertexColor(.05, .05, .05)
+				v:SetVertexColor(.05, .05, .05)
 			end
 
 			for _, region in pairs({StopwatchFrame:GetRegions()}) do
@@ -364,6 +364,9 @@
 		MainMenuBarArtFrame.LeftEndCap,
         MainMenuBarArtFrame.RightEndCap, 
 	}) do
+		if cfg.barartframe.show == false then
+			v:SetAlpha(0)
+		end
         v:SetVertexColor(.45, .45, .45)
 	end 
 

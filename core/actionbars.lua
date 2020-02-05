@@ -7,6 +7,7 @@
   local classcolor = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
   local dominos = IsAddOnLoaded("Dominos")
   local bartender4 = IsAddOnLoaded("Bartender4")
+  local masque = IsAddOnLoaded("Masque")
 
   if cfg.color.classcolored then
     cfg.color.normal = classcolor
@@ -36,8 +37,8 @@
   -- FUNCTIONS
   ---------------------------------------
 
-	if IsAddOnLoaded("Masque") and (dominos or bartender4) then
-		return
+	if masque and (dominos or bartender4) then
+    return
 	end
 
   local function applyBackground(bu)

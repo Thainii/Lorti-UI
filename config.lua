@@ -16,6 +16,12 @@
   -- CONFIG
   -----------------------------
 
+-- artframe setting
+
+  cfg.barartframe = {
+    show               = false --show artframe (eagle on the left and right side of the action bar)
+  }
+
 -- action bars settings
 
   cfg.textures = {
