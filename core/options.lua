@@ -30,7 +30,7 @@
 
   local defaults = {
     profile =  {
-      statusartframe = nil,
+      statusartframe = true,
     },
   }
 
