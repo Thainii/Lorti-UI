@@ -15,7 +15,13 @@
       handler = LortiUI,
       type = "group",
       args = {
-        statusartframe = {
+        gActionbare = {
+          type = "group",
+          name = "Action Bar",
+          inline = true,
+          order = 0,
+          args = {
+            statusartframe = {
               type = "toggle",
               name = NORMAL_FONT_COLOR_CODE .. "Show Gryphons" .. FONT_COLOR_CODE_CLOSE,
               desc = "Show or Hide the Gryphons next to the Main Actionbar",
@@ -24,7 +30,10 @@
               descStyle = "inline",
               width = "full",
               order = 0,
-          },
+            },
+          }
+        }
+
       },
   }
 
