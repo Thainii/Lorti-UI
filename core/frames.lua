@@ -364,9 +364,6 @@
 		MainMenuBarArtFrame.LeftEndCap,
         MainMenuBarArtFrame.RightEndCap, 
 	}) do
-		if cfg.barartframe.show == false then
-			v:SetAlpha(0)
-		end
         v:SetVertexColor(.45, .45, .45)
 	end 
 

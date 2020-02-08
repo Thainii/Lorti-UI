@@ -1,5 +1,4 @@
-﻿
-  -- // Lorti-UI
+﻿  -- // Lorti-UI
   -- // Thainii - 2020
 
   -----------------------------
@@ -15,12 +14,6 @@
   -----------------------------
   -- CONFIG
   -----------------------------
-
--- artframe setting
-
-  cfg.barartframe = {
-    show               = false --show artframe (eagle on the left and right side of the action bar)
-  }
 
 -- action bars settings
 
