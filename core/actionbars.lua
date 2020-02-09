@@ -75,9 +75,9 @@
   local function styleExtraActionButton(bu)
     if not bu or (bu and bu.rabs_styled) then return end
     local name = bu:GetName() or bu:GetParent():GetName()
-	local style = bu.style or bu.Style
-	local icon = bu.icon or bu.Icon
-	local cooldown = bu.cooldown or bu.Cooldown
+    local style = bu.style or bu.Style
+    local icon = bu.icon or bu.Icon
+    local cooldown = bu.cooldown or bu.Cooldown
     local ho = _G[name.."HotKey"]
     -- remove the style background theme
 	style:SetTexture(nil)
@@ -142,17 +142,13 @@
     ho:ClearAllPoints()
     ho:SetPoint(cfg.hotkeys.pos1.a1,bu,cfg.hotkeys.pos1.x,cfg.hotkeys.pos1.y)
     ho:SetPoint(cfg.hotkeys.pos2.a1,bu,cfg.hotkeys.pos2.x,cfg.hotkeys.pos2.y)
-    if not dominos and not bartender4 and not cfg.hotkeys.show then
-      ho:Hide()
-    end
+
     --macro name
     na:SetFont(cfg.font, cfg.macroname.fontsize, "OUTLINE")
     na:ClearAllPoints()
     na:SetPoint(cfg.macroname.pos1.a1,bu,cfg.macroname.pos1.x,cfg.macroname.pos1.y)
     na:SetPoint(cfg.macroname.pos2.a1,bu,cfg.macroname.pos2.x,cfg.macroname.pos2.y)
-    if not dominos and not bartender4 and not cfg.macroname.show then
-      na:Hide()
-    end
+
     --item stack count
     co:SetFont(cfg.font, cfg.itemcount.fontsize, "OUTLINE")
     co:ClearAllPoints()
@@ -359,14 +355,6 @@ local function styleBag(bu)
 		bu.Back:SetBackdropBorderColor(0, 0, 0, 0.9)
 end
 
-  --update hotkey func
-  local function updateHotkey(self, actionButtonType)
-    local ho = _G[self:GetName().."HotKey"]
-    if ho and not cfg.hotkeys.show and ho:IsShown() then
-      ho:Hide()
-    end
-  end
-
   ---------------------------------------
   -- INIT
   ---------------------------------------
@@ -433,11 +421,6 @@ end
         styleActionButton(_G["BT4Button"..i])
 		stylePetButton(_G["BT4PetButton"..i])
       end
-    end
-
-    --hide the hotkeys if needed
-    if not dominos and not bartender4 and not cfg.hotkeys.show then
-      hooksecurefunc("ActionButton_UpdateHotkeys",  updateHotkey)
     end
 
   end
