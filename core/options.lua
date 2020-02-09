@@ -43,8 +43,8 @@
             },
             statusmacrotext = {
               type = "toggle",
-              name = NORMAL_FONT_COLOR_CODE .. "Show Macro Text" .. FONT_COLOR_CODE_CLOSE,
-              desc = "Show or Hide the Macro Text in Actionbars",
+              name = NORMAL_FONT_COLOR_CODE .. "Show Macro Name" .. FONT_COLOR_CODE_CLOSE,
+              desc = "Show or Hide the Macro Name in Actionbars",
               get = "Getstatusmarcotext",
               set = "UpdateMacrotext",
               descStyle = "inline",
