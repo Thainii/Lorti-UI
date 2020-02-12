@@ -118,7 +118,46 @@
 
   function LortiUI:UpdateHotkeytext()
     if (self.db.profile.statushotkeytext == nil) then return end
-    local status = nil
+    local _G = getfenv(0)
+    local buttons = {
+      "ActionButton",
+      "MultiBarBottomLeftButton",
+      "MultiBarBottomRightButton",
+      "MultiBarLeftButton",
+      "MultiBarRightButton",
+      "PetActionButton"
+    }
+
+    if self.db.profile.statushotkeytext == true then
+      for i = 1, getn(buttons) do
+        for n = 1, 12 do
+          local o = _G[buttons[i]..n.."HotKey"]
+          if (o) then
+            o:Hide()
+          end
+        end
+      end
+      self.db.profile.statushotkeytext = false
+    else
+      for i = 1, getn(buttons) do
+        for n = 1, 12 do
+          local o = _G[buttons[i]..n.."HotKey"]
+          if (o) then
+            o:Show()
+          end
+        end
+      end
+      self.db.profile.statushotkeytext = true
+    end
+  end
+
+  -- Macro Text
+  function LortiUI:Getstatusmarcotext()
+    return self.db.profile.statusmacrotext
+  end 
+
+  function LortiUI:UpdateMacrotext()
+    if (self.db.profile.statusmacrotext == nil) then return end
     local _G = getfenv(0)
     local buttons = {
       "ActionButton",
@@ -127,58 +166,20 @@
       "MultiBarLeftButton",
       "MultiBarRightButton",
     }
-
-    if self.db.profile.statushotkeytext == true then
+    
+    if self.db.profile.statusmacrotext == true then
       for i = 1, getn(buttons) do
         for n = 1, NUM_ACTIONBAR_BUTTONS do
-          _G[buttons[i]..n.."HotKey"]:Hide()
+          _G[buttons[i]..n.."Name"]:Hide()
         end
       end
-      status = false
+      self.db.profile.statusmacrotext = false
     else
       for i = 1, getn(buttons) do
         for n = 1, NUM_ACTIONBAR_BUTTONS do
-          _G[buttons[i]..n.."HotKey"]:Show()
+          _G[buttons[i]..n.."Name"]:Show()
         end
       end
-      status = true
+      self.db.profile.statusmacrotext = true
     end
-
-    self.db.profile.statushotkeytext = status
   end
-
-    -- Macro Text
-    function LortiUI:Getstatusmarcotext()
-      return self.db.profile.statusmacrotext
-    end 
-  
-    function LortiUI:UpdateMacrotext()
-      if (self.db.profile.statusmacrotext == nil) then return end
-      local status = nil
-      local _G = getfenv(0)
-      local buttons = {
-        "ActionButton",
-        "MultiBarBottomLeftButton",
-        "MultiBarBottomRightButton",
-        "MultiBarLeftButton",
-        "MultiBarRightButton",
-      }
-
-      if self.db.profile.statusmacrotext == true then
-        for i = 1, getn(buttons) do
-          for n = 1, NUM_ACTIONBAR_BUTTONS do
-            _G[buttons[i]..n.."Name"]:Hide()
-          end
-        end
-        status = false
-      else
-        for i = 1, getn(buttons) do
-          for n = 1, NUM_ACTIONBAR_BUTTONS do
-            _G[buttons[i]..n.."Name"]:Show()
-          end
-        end
-        status = true
-      end
-
-      self.db.profile.statusmacrotext = status
-    end
