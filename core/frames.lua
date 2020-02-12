@@ -354,7 +354,7 @@
 		StatusTrackingBarManager.SingleBarLarge,
 		StatusTrackingBarManager.SingleBarSmall,
 		StatusTrackingBarManager.SingleBarSmallUpper,
-		--MicroButtonAndBagsBar.MicroBagBar,
+		MicroButtonAndBagsBar.MicroBagBar,
 		CharFrameEditBox
 	}) do
 		v:SetVertexColor(.2, .2, .2)
