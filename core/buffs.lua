@@ -151,19 +151,21 @@
     b.icon = icon
 
     --border
-    local border = _G[name.."Border"] or b:CreateTexture(name.."Border", "BACKGROUND", nil, -7)
-    border:SetTexture(cfg.border.texture)
-    border:SetTexCoord(0,1,0,1)
-    border:SetDrawLayer("BACKGROUND",-7)
-    if tempenchant then
-      border:SetVertexColor(0.7,0,1)
-    elseif not debuff then
-      border:SetVertexColor(cfg.border.color.r,cfg.border.color.g,cfg.border.color.b)
+    if (cfg.border.show) then
+      local border = _G[name.."Border"] or b:CreateTexture(name.."Border", "BACKGROUND", nil, -7)
+      border:SetTexture(cfg.border.texture)
+      border:SetTexCoord(0,1,0,1)
+      border:SetDrawLayer("BACKGROUND",-7)
+      if tempenchant then
+        border:SetVertexColor(0.7,0,1)
+      elseif not debuff then
+        border:SetVertexColor(cfg.border.color.r,cfg.border.color.g,cfg.border.color.b)
+      end
+      border:ClearAllPoints()
+      border:SetAllPoints(b)
+      b.border = border
     end
-    border:ClearAllPoints()
-    border:SetAllPoints(b)
-    b.border = border
-
+    
     --duration
     b.duration:SetFont(cfg.duration.font, cfg.duration.size, "THINOUTLINE")
     b.duration:ClearAllPoints()

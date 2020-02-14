@@ -95,6 +95,7 @@
       padding           = -2,
     },
     border = {
+      show              = true,
       texture           = "Interface\\AddOns\\Lorti-UI\\textures\\gloss",
       color             = { r = 0.4, g = 0.35, b = 0.35, },
       classcolored      = false,
@@ -134,6 +135,7 @@
       padding           = -2,
     },
     border = {
+      show              = true,
       texture           = "Interface\\AddOns\\Lorti-UI\\textures\\gloss",
       color             = { r = 0.4, g = 0.35, b = 0.35, },
       classcolored      = false,
