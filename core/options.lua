@@ -99,12 +99,12 @@
     local status = nil
 
     if self.db.profile.statusartframe == true then
-      MainMenuBarArtFrame.LeftEndCap:Hide()
-      MainMenuBarArtFrame.RightEndCap:Hide()
+      MainMenuBarLeftEndCap:Hide()
+      MainMenuBarRightEndCap:Hide()
       status = false
     else
-      MainMenuBarArtFrame.LeftEndCap:Show()
-      MainMenuBarArtFrame.RightEndCap:Show()
+      MainMenuBarLeftEndCap:Show()
+      MainMenuBarRightEndCap:Show()
       status = true
     end
 

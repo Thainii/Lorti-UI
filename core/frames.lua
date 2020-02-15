@@ -73,42 +73,6 @@
                  		v:SetVertexColor(.05, .05, .05)
 			end
 			select(2, TimeManagerClockButton:GetRegions()):SetVertexColor(1,1,1)
-
-			hooksecurefunc("GarrisonLandingPageMinimapButton_UpdateIcon", function(self)
-				self:GetNormalTexture():SetTexture(nil)
-				self:GetPushedTexture():SetTexture(nil)
-				if not gb then
-					gb = CreateFrame("Frame", nil, GarrisonLandingPageMinimapButton)
-					gb:SetFrameLevel(GarrisonLandingPageMinimapButton:GetFrameLevel() - 1)
-					gb:SetPoint("CENTER", 0, 0)
-					gb:SetSize(36,36)
-
-					gb.icon = gb:CreateTexture(nil, "ARTWORK")
-					gb.icon:SetPoint("CENTER", 0, 0)
-					gb.icon:SetSize(36,36)
-			
-					gb.border = CreateFrame("Frame", nil, gb)
-					gb.border:SetFrameLevel(gb:GetFrameLevel() + 1)
-					gb.border:SetAllPoints()
-
-					gb.border.texture = gb.border:CreateTexture(nil, "ARTWORK")
-					gb.border.texture:SetTexture("Interface\\PlayerFrame\\UI-PlayerFrame-Deathknight-Ring")
-					gb.border.texture:SetVertexColor(.05,.05,.05)
-					gb.border.texture:SetPoint("CENTER", 1, -2)
-					gb.border.texture:SetSize(45,45)
-				end
-				if (C_Garrison.GetLandingPageGarrisonType() == 2) then
-					if select(1,UnitFactionGroup("player")) == "Alliance" then	
-						SetPortraitToTexture(gb.icon, select(3,GetSpellInfo(61573)))
-					elseif select(1,UnitFactionGroup("player")) == "Horde" then
-						SetPortraitToTexture(gb.icon, select(3,GetSpellInfo(61574)))
-					end
-				else
-					local t = CLASS_ICON_TCOORDS[select(2,UnitClass("player"))]
-                			gb.icon:SetTexture("Interface\\TargetingFrame\\UI-Classes-Circles")
-                			gb.icon:SetTexCoord(unpack(t))
-				end
-			end)
 		
   			MinimapBorderTop:Hide()
 			MinimapZoomIn:Hide()
@@ -118,9 +82,6 @@
 			GameTimeFrame:Hide()
 			GameTimeFrame:UnregisterAllEvents()
 			GameTimeFrame.Show = kill
-			MiniMapTracking:Hide()
-			MiniMapTracking.Show = kill
-			MiniMapTracking:UnregisterAllEvents()
 			Minimap:EnableMouseWheel(true)
 			Minimap:SetScript("OnMouseWheel", function(self, z)
 				local c = Minimap:GetZoom()
@@ -226,19 +187,6 @@
 		if not (IsAddOnLoaded("Shadowed Unit Frames") or IsAddOnLoaded("PitBull Unit Frames 4.0") or IsAddOnLoaded("X-Perl UnitFrames")) then
 			for i,v in pairs({
 				PlayerFrameTexture,
-				PlayerFrameAlternateManaBarBorder,
-				PlayerFrameAlternateManaBarLeftBorder,
-				PlayerFrameAlternateManaBarRightBorder,
-				ComboPointPlayerFrame.Background,
-				ComboPointPlayerFrame.Combo1.PointOff,
-				ComboPointPlayerFrame.Combo2.PointOff,
-				ComboPointPlayerFrame.Combo3.PointOff,
-				ComboPointPlayerFrame.Combo4.PointOff,
-				ComboPointPlayerFrame.Combo5.PointOff,
-				ComboPointPlayerFrame.Combo6.PointOff,
-				AlternatePowerBarBorder,
-				AlternatePowerBarLeftBorder,
-				AlternatePowerBarRightBorder,
   				PetFrameTexture,
 				PartyMemberFrame1Texture,
 				PartyMemberFrame2Texture,
@@ -260,10 +208,7 @@
 				Boss2TargetFrameSpellBar.Border,
 				Boss3TargetFrameSpellBar.Border,
 				Boss4TargetFrameSpellBar.Border,
-				Boss5TargetFrameSpellBar.Border,
-				CastingBarFrame.Border,
-				FocusFrameSpellBar.Border,
-				TargetFrameSpellBar.Border,
+				Boss5TargetFrameSpellBar.Border
 			}) do
 				v:SetVertexColor(.05, .05, .05)
 			end
@@ -312,13 +257,6 @@
 			PlayerHitIndicator.SetText = function() end
 			PetHitIndicator:SetText(nil) 
 			PetHitIndicator.SetText = function() end
- 			for _, child in pairs({WarlockPowerFrame:GetChildren()}) do
-				for _, region in pairs({child:GetRegions()}) do
- 					if region:GetDrawLayer() == "BORDER" then
- 						region:SetVertexColor(.05, .05, .05)
- 					end
-				end
- 			end
 
 		else
 			CastingBarFrameBorder:SetVertexColor(.05,.05,.05)    
@@ -327,108 +265,30 @@
    
  -- COLORING THE MAIN BAR
 	for i,v in pairs({
-		SlidingActionBarTexture0,
-		SlidingActionBarTexture1,
+		--Main Bar
         MainMenuBarTexture0,
 		MainMenuBarTexture1,
 		MainMenuBarTexture2,
 		MainMenuBarTexture3,
-        MainMenuMaxLevelBar0,
-        MainMenuMaxLevelBar1,
-		MainMenuMaxLevelBar2,
-		MainMenuMaxLevelBar3,
-		MainMenuXPBarTextureLeftCap,
-		MainMenuXPBarTextureRightCap,
-		MainMenuXPBarTextureMid,
-		ReputationWatchBarTexture0,
-		ReputationWatchBarTexture1,
-		ReputationWatchBarTexture2,
-		ReputationWatchBarTexture3,
-		ReputationXPBarTexture0,
-		ReputationXPBarTexture1,
-		ReputationXPBarTexture2,
-		ReputationXPBarTexture3,
-		MainMenuBarArtFrameBackground.BackgroundLarge,
-		MainMenuBarArtFrameBackground.BackgroundSmall,
-		StatusTrackingBarManager.SingleBarLargeUpper,
-		StatusTrackingBarManager.SingleBarLarge,
-		StatusTrackingBarManager.SingleBarSmall,
-		StatusTrackingBarManager.SingleBarSmallUpper,
-		MicroButtonAndBagsBar.MicroBagBar,
-		CharFrameEditBox
+
+		--XP Bar
+		MainMenuXPBarTexture0,
+		MainMenuXPBarTexture1,
+		MainMenuXPBarTexture2,
+		MainMenuXPBarTexture3,
+
+		--Reputation Bar
+		ReputationWatchBar.StatusBar.WatchBarTexture0,
+		ReputationWatchBar.StatusBar.WatchBarTexture1,
+		ReputationWatchBar.StatusBar.WatchBarTexture2,
+		ReputationWatchBar.StatusBar.WatchBarTexture3,
 	}) do
 		v:SetVertexColor(.2, .2, .2)
 	end 	
 
 	for i,v in pairs({
-		MainMenuBarArtFrame.LeftEndCap,
-        MainMenuBarArtFrame.RightEndCap, 
+		MainMenuBarLeftEndCap,
+        MainMenuBarRightEndCap, 
 	}) do
         v:SetVertexColor(.45, .45, .45)
 	end 
-
- -- COLORING ARENA FRAMES
-	local CF = CreateFrame("Frame")
-	local _, instanceType = IsInInstance()
-	CF:RegisterEvent("ADDON_LOADED")
-	CF:RegisterEvent("PLAYER_ENTERING_WORLD")
-	CF:RegisterEvent("ARENA_PREP_OPPONENT_SPECIALIZATIONS")
-        CF:SetScript("OnEvent", function(self, event, addon)
-			if addon == "Blizzard_ArenaUI" and not (IsAddOnLoaded("Shadowed Unit Frames")) then
-			for i,v in pairs({
- 				ArenaEnemyFrame1Texture,
-				ArenaEnemyFrame2Texture,
-				ArenaEnemyFrame3Texture, 
-				ArenaEnemyFrame4Texture,
-				ArenaEnemyFrame5Texture,
-				ArenaEnemyFrame1SpecBorder,
-				ArenaEnemyFrame2SpecBorder,
-				ArenaEnemyFrame3SpecBorder,
-				ArenaEnemyFrame4SpecBorder,
-				ArenaEnemyFrame5SpecBorder,
-				ArenaEnemyFrame1PetFrameTexture,
-				ArenaEnemyFrame2PetFrameTexture,
-				ArenaEnemyFrame3PetFrameTexture,
-				ArenaEnemyFrame4PetFrameTexture, 
-				ArenaEnemyFrame5PetFrameTexture,
-				}) do
-					v:SetVertexColor(.05, .05, .05)
-			end 
-		elseif event == "ARENA_PREP_OPPONENT_SPECIALIZATIONS" or (event == "PLAYER_ENTERING_WORLD" and instanceType == "arena") then
-			for i,v in pairs({
-				ArenaPrepFrame1Texture,
-				ArenaPrepFrame2Texture,
-				ArenaPrepFrame3Texture,
-				ArenaPrepFrame4Texture,
-				ArenaPrepFrame5Texture,
-				ArenaPrepFrame1SpecBorder,
-				ArenaPrepFrame2SpecBorder,
-				ArenaPrepFrame3SpecBorder,
-				ArenaPrepFrame4SpecBorder,
-				ArenaPrepFrame5SpecBorder,
-			}) do
-				v:SetVertexColor(.05, .05, .05)
-			end 		
-		end 
-	end)
-	if IsAddOnLoaded("Blizzard_ArenaUI") then
-		for i,v in pairs({
- 			ArenaEnemyFrame1Texture,
-			ArenaEnemyFrame2Texture,
-			ArenaEnemyFrame3Texture, 
-			ArenaEnemyFrame4Texture,
-			ArenaEnemyFrame5Texture,
-			ArenaEnemyFrame1SpecBorder,
-			ArenaEnemyFrame2SpecBorder,
-			ArenaEnemyFrame3SpecBorder,
-			ArenaEnemyFrame4SpecBorder,
-			ArenaEnemyFrame5SpecBorder,
-			ArenaEnemyFrame1PetFrameTexture,
-			ArenaEnemyFrame2PetFrameTexture,
-			ArenaEnemyFrame3PetFrameTexture,
-			ArenaEnemyFrame4PetFrameTexture, 
-			ArenaEnemyFrame5PetFrameTexture,
-		}) do
-			v:SetVertexColor(.05, .05, .05)
-		end 
-	end

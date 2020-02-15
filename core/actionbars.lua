@@ -381,32 +381,18 @@ end
 	styleLeaveButton(MainMenuBarVehicleLeaveButton)
     styleLeaveButton(rABS_LeaveVehicleButton)
     --petbar buttons
-    for i=1, NUM_PET_ACTION_SLOTS do
+    for i=1, 12 do
       stylePetButton(_G["PetActionButton"..i])
     end
     --stancebar buttons
-    for i=1, NUM_STANCE_SLOTS do
+    for i=1, 12 do
       styleStanceButton(_G["StanceButton"..i])
     end
     --possess buttons
-    for i=1, NUM_POSSESS_SLOTS do
+    for i=1, 12 do
       stylePossessButton(_G["PossessButton"..i])
     end
-    --extraactionbutton1
-    styleExtraActionButton(ExtraActionButton1)
-	styleExtraActionButton(ZoneAbilityFrame.SpellButton)
-    --spell flyout
-    SpellFlyoutBackgroundEnd:SetTexture(nil)
-    SpellFlyoutHorizontalBackground:SetTexture(nil)
-    SpellFlyoutVerticalBackground:SetTexture(nil)
-    local function checkForFlyoutButtons(self)
-      local NUM_FLYOUT_BUTTONS = 10
-      for i = 1, NUM_FLYOUT_BUTTONS do
-        styleActionButton(_G["SpellFlyoutButton"..i])
-      end
-    end
-    SpellFlyout:HookScript("OnShow",checkForFlyoutButtons)
-
+    
     --dominos styling
     if dominos then
       --print("Dominos found")

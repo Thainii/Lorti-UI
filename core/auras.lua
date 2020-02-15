@@ -104,21 +104,6 @@ local function applycastSkin(b)
 	b.styled = true
 end
 
--- setting timer for castbar icons
-
-function UpdateTimer(self, elapsed)
-	total = total + elapsed
-	if TargetFrameSpellBar.Icon then 
-		applycastSkin(TargetFrameSpellBar.Icon)
-	end
-	if FocusFrameSpellBar.Icon then
-		applycastSkin(FocusFrameSpellBar.Icon)
-	end
-	if TargetFrameSpellBar.Icon.styled and FocusFrameSpellBar.Icon.styled then
-		cf:SetScript("OnUpdate", nil)
-	end
-end
-
  ---------------------------------------
   -- INIT
  ---------------------------------------
