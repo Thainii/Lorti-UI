@@ -135,8 +135,12 @@
 					_G.GameTimeFrame:Click()
 				elseif btn == "MiddleButton" then
 					_G.ToggleDropDownMenu(1, nil, _G.MiniMapTrackingDropDown, self)
-				else
-					_G.Minimap_OnClick(self)
+				elseif btn == "LeftButton" then
+					if IsShiftKeyDown() then
+						_G.MiniMapWorldMapButton:Click()
+					else
+						_G.Minimap_OnClick(self)
+					end
 				end
 			end)
 		end
