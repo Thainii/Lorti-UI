@@ -196,9 +196,7 @@
 				PartyMemberFrame2PetFrameTexture,
 				PartyMemberFrame3PetFrameTexture,
 				PartyMemberFrame4PetFrameTexture,
-   				FocusFrameTextureFrameTexture,
    				TargetFrameToTTextureFrameTexture,
-   				FocusFrameToTTextureFrameTexture,
 				Boss1TargetFrameTextureFrameTexture,
 				Boss2TargetFrameTextureFrameTexture,
 				Boss3TargetFrameTextureFrameTexture,
@@ -243,7 +241,6 @@
 			for i,v in pairs({
 				PlayerPVPIcon,
 				TargetFrameTextureFramePVPIcon,
-				FocusFrameTextureFramePVPIcon,
 			}) do
 				v:SetAlpha(0)
 			end

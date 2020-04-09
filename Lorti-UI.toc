@@ -1,7 +1,7 @@
-## Interface: 11303
+## Interface: 11304
 ## Author: lorti
 ## Edited by Thainii
-## Version: 1.0
+## Version: 1.1
 ## Title: Lorti-UI
 ## Notes: Darkens the default UI
 ## SavedVariables: LortiUIDB

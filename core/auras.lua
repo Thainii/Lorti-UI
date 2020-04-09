@@ -75,8 +75,6 @@ local function applycastSkin(b)
 	-- parent
 	if b == TargetFrameSpellBar.Icon then
 		b.parent = TargetFrameSpellBar
-	else
-		b.parent = FocusFrameSpellBar
 	end
 	-- frame
 	frame = CreateFrame("Frame", nil, b.parent)
@@ -115,14 +113,6 @@ hooksecurefunc("TargetFrame_UpdateAuras", function(self)
 	end
 	for i = 1, MAX_TARGET_DEBUFFS do
 		b = _G["TargetFrameDebuff"..i]
-		applySkin(b)
-	end
-	for i = 1, MAX_TARGET_BUFFS do
-		b = _G["FocusFrameBuff"..i]
-		applySkin(b)
-	end
-	for i = 1, MAX_TARGET_DEBUFFS do
-		b = _G["FocusFrameDebuff"..i]
 		applySkin(b)
 	end
 end)
