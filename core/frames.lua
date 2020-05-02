@@ -206,7 +206,11 @@
 				Boss2TargetFrameSpellBar.Border,
 				Boss3TargetFrameSpellBar.Border,
 				Boss4TargetFrameSpellBar.Border,
-				Boss5TargetFrameSpellBar.Border
+				Boss5TargetFrameSpellBar.Border,
+				CastingBarFrame.Border,
+				ChatFrame1EditBoxLeft,
+				ChatFrame1EditBoxMid,
+				ChatFrame1EditBoxRight
 			}) do
 				v:SetVertexColor(.05, .05, .05)
 			end
@@ -254,9 +258,6 @@
 			PlayerHitIndicator.SetText = function() end
 			PetHitIndicator:SetText(nil) 
 			PetHitIndicator.SetText = function() end
-
-		else
-			CastingBarFrameBorder:SetVertexColor(.05,.05,.05)    
 		end
 	end)
    
