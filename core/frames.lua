@@ -53,7 +53,7 @@
 
 	function onevent (frame, event, ...)
   		if event == 'PLAYER_LOGIN' then
-    			enable()
+			enable()
   		end
 	end
 	event_frame:SetScript('OnEvent', onevent)
@@ -110,7 +110,7 @@
 	
 	hooksecurefunc('TargetFrame_CheckClassification', function(self, forceNormalTexture)
 		 local classification = UnitClassification(self.unit);
-		if ( classification == "minus" ) then
+		if (classification == "minus" ) then
 			self.borderTexture:SetTexture("Interface\\TargetingFrame\\UI-TargetingFrame-Minus");
 			self.borderTexture:SetVertexColor(.05, .05, .05)
 			self.nameBackground:Hide();
@@ -120,13 +120,13 @@
 			self.manabar.LeftText:Hide();
 			self.manabar.RightText:Hide();
 			forceNormalTexture = true;
-		elseif ( classification == "worldboss" or classification == "elite" ) then
+		elseif (classification == "worldboss" or classification == "elite" ) then
 			self.borderTexture:SetTexture("Interface\\AddOns\\Lorti-UI\\textures\\target\\elite")
 			self.borderTexture:SetVertexColor(1, 1, 1)
-		elseif ( classification == "rareelite" ) then
+		elseif (classification == "rareelite" ) then
 			self.borderTexture:SetTexture("Interface\\AddOns\\Lorti-UI\\textures\\target\\rare-elite")
 			self.borderTexture:SetVertexColor(1, 1, 1)
-		elseif ( classification == "rare" ) then
+		elseif (classification == "rare" ) then
 			self.borderTexture:SetTexture("Interface\\AddOns\\Lorti-UI\\textures\\target\\rare")
 			self.borderTexture:SetVertexColor(1, 1, 1)
 		else
@@ -208,6 +208,7 @@
 				Boss4TargetFrameSpellBar.Border,
 				Boss5TargetFrameSpellBar.Border,
 				CastingBarFrame.Border,
+				TargetFrameSpellBar.Border,
 				ChatFrame1EditBoxLeft,
 				ChatFrame1EditBoxMid,
 				ChatFrame1EditBoxRight
@@ -246,7 +247,7 @@
 				PlayerPVPIcon,
 				TargetFrameTextureFramePVPIcon,
 			}) do
-				v:SetAlpha(0)
+				v:SetAlpha(0.35)
 			end
 			for i=1,4 do 
 				_G["PartyMemberFrame"..i.."PVPIcon"]:SetAlpha(0)
@@ -284,9 +285,67 @@
 		v:SetVertexColor(.2, .2, .2)
 	end 	
 
+--Gryphons
 	for i,v in pairs({
 		MainMenuBarLeftEndCap,
         MainMenuBarRightEndCap, 
 	}) do
         v:SetVertexColor(.45, .45, .45)
 	end 
+
+--Bags
+	for i,v in pairs({
+			ContainerFrame1BackgroundTop,
+			ContainerFrame1BackgroundMiddle1,
+			ContainerFrame1BackgroundBottom,
+
+			ContainerFrame2BackgroundTop,
+			ContainerFrame2BackgroundMiddle1,
+			ContainerFrame2BackgroundBottom,
+
+			ContainerFrame3BackgroundTop,
+			ContainerFrame3BackgroundMiddle1,
+			ContainerFrame3BackgroundBottom,
+
+			ContainerFrame4BackgroundTop,
+			ContainerFrame4BackgroundMiddle1,
+			ContainerFrame4BackgroundBottom,
+
+			ContainerFrame5BackgroundTop,
+			ContainerFrame5BackgroundMiddle1,
+			ContainerFrame5BackgroundBottom,
+		
+			ContainerFrame6BackgroundTop,
+			ContainerFrame6BackgroundMiddle1,
+			ContainerFrame6BackgroundBottom,
+			
+			ContainerFrame7BackgroundTop,
+			ContainerFrame7BackgroundMiddle1,
+			ContainerFrame7BackgroundBottom,
+			
+			ContainerFrame8BackgroundTop,
+			ContainerFrame8BackgroundMiddle1,
+			ContainerFrame8BackgroundBottom,
+			
+			ContainerFrame9BackgroundTop,
+			ContainerFrame9BackgroundMiddle1,
+			ContainerFrame9BackgroundBottom,
+			
+			ContainerFrame10BackgroundTop,
+			ContainerFrame10BackgroundMiddle1,
+			ContainerFrame10BackgroundBottom,
+			
+			ContainerFrame11BackgroundTop,
+			ContainerFrame11BackgroundMiddle1,
+			ContainerFrame11BackgroundBottom,
+
+			MerchantFrameTopBorder,
+			MerchantFrameBtnCornerRight,
+			MerchantFrameBtnCornerLeft,
+			MerchantFrameBottomRightBorder,
+			MerchantFrameBottomLeftBorder,
+			MerchantFrameButtonBottomBorder,
+			MerchantFrameBg,
+		}) do
+		   v:SetVertexColor(.35, .35, .35)
+	end
